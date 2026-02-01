@@ -1,11 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Kian</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kian | Builder, Trader</title>
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family: monospace; }
+
+body {
+  background:#050805;
+  color:#00ff66;
+  min-height:100vh;
+  background-image:
+    linear-gradient(rgba(0,255,100,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,100,0.05) 1px, transparent 1px);
+  background-size:40px 40px;
+}
+
+.hero {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
+  text-align:center;
+}
+
+.title {
+  font-size:3rem;
+  margin-bottom:10px;
+}
+
+.subtitle {
+  opacity:.8;
+  margin-bottom:40px;
+}
+
+.terminal {
+  max-width:720px;
+  width:100%;
+  background:rgba(0,0,0,.8);
+  border:1px solid rgba(0,255,100,.35);
+  padding:24px;
+  box-shadow:0 0 40px rgba(0,255,100,.15);
+}
+
+.terminal p {
+  margin-bottom:14px;
+  line-height:1.5;
+}
+
+footer {
+  padding:20px;
+  text-align:center;
+  opacity:.6;
+  font-size:.8rem;
+}
+</style>
 </head>
+
 <body>
-  <h1>Hello. It works.</h1>
-  <p>If you see this, GitHub Pages is working.</p>
+
+<section class="hero">
+  <div class="title">./kian --init</div>
+  <div class="subtitle">&gt; Builder. Trader. Ships things.</div>
+
+  <div class="terminal">
+    <p>$ I’m Kian.</p>
+    <p>I build stuff, trade stuff, break stuff then fix it.</p>
+
+    <p>If you need someone who actually ships,<br>yeah, you’re home.</p>
+
+    <p>$ Web3 builder by obsession.<br>
+    Marketing and Sales grad by paper.<br>
+    Vibe coder by nature.</p>
+
+    <p>I edit videos, make content,<br>
+    and trade markets in between builds.</p>
+  </div>
+</section>
+
+<footer>
+© 2026 Kian. Built with caffeine and bad ideas.
+</footer>
+
 </body>
 </html>
