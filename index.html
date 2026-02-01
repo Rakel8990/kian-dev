@@ -20,7 +20,7 @@ body {
   color: #00ff9c;
 }
 
-/* animated grid background */
+/* GRID BACKGROUND */
 body::before {
   content: "";
   position: fixed;
@@ -38,14 +38,14 @@ body::before {
   to { background-position: 400px 400px, 400px 400px; }
 }
 
-/* snow particles */
+/* SNOW */
 canvas {
   position: fixed;
   inset: 0;
   z-index: -1;
 }
 
-/* center content */
+/* CENTER */
 .wrapper {
   height: 100vh;
   display: flex;
@@ -54,34 +54,33 @@ canvas {
   justify-content: center;
 }
 
-/* title */
 h1 {
   font-size: 42px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .subtitle {
   opacity: 0.7;
-  margin-bottom: 30px;
+  margin-bottom: 26px;
 }
 
-/* terminal */
+/* TERMINAL */
 .terminal-box {
-  width: 820px;
-  min-height: 420px;
+  width: 860px;
+  min-height: 520px;
   background: rgba(0,0,0,0.75);
   border-radius: 12px;
   border: 1px solid rgba(0,255,156,0.35);
-  box-shadow: 0 0 40px rgba(0,255,156,0.2);
+  box-shadow: 0 0 40px rgba(0,255,156,0.25);
   transition: 0.35s ease;
 }
 
 .terminal-box:hover {
-  transform: translateY(-8px) scale(1.015);
-  box-shadow: 0 0 80px rgba(0,255,156,0.45);
+  transform: translateY(-8px);
+  box-shadow: 0 0 90px rgba(0,255,156,0.45);
 }
 
-/* header */
+/* HEADER */
 .header {
   display: flex;
   align-items: center;
@@ -104,11 +103,11 @@ h1 {
   opacity: 0.7;
 }
 
-/* content */
+/* CONTENT */
 .content {
-  padding: 26px;
-  line-height: 1.7;
+  padding: 22px;
   font-size: 16px;
+  line-height: 1.7;
 }
 
 .cursor {
@@ -119,7 +118,49 @@ h1 {
   50% { opacity: 0; }
 }
 
-/* socials */
+/* SKILL SLIDER */
+.skills-wrapper {
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.skills-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: slide 45s linear infinite;
+}
+
+@keyframes slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.skill-card {
+  min-width: 240px;
+  background: rgba(0,255,156,0.05);
+  border: 1px solid rgba(0,255,156,0.35);
+  border-radius: 10px;
+  padding: 16px;
+  transition: 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 0 25px rgba(0,255,156,0.5);
+}
+
+.skill-title {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.skill-desc {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* SOCIALS */
 .socials {
   margin-top: 18px;
   display: flex;
@@ -129,7 +170,6 @@ h1 {
 .socials a {
   color: #00ff9c;
   text-decoration: none;
-  font-size: 16px;
   opacity: 0.8;
   transition: 0.25s;
 }
@@ -156,8 +196,43 @@ h1 {
       <div class="dot green"></div>
       <span>~/about.sh</span>
     </div>
+
     <div class="content">
       <span id="terminal"></span><span class="cursor">█</span>
+
+      <div class="skills-wrapper">
+        <div class="skills-track">
+          <div class="skill-card">
+            <div class="skill-title">$ Marketing Graduate</div>
+            <div class="skill-desc">Understands funnels, narratives, and why people click.</div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">$ Video Editor</div>
+            <div class="skill-desc">Cuts fast, keeps attention, kills dead frames.</div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">$ Content Creator</div>
+            <div class="skill-desc">Breaks complex ideas into scroll stopping pieces.</div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">$ Web3 Builder</div>
+            <div class="skill-desc">Builds, tests, and ships onchain ideas.</div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">$ Vibe Coder</div>
+            <div class="skill-desc">Learns by doing, ships by instinct.</div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">$ Trader</div>
+            <div class="skill-desc">Trades for self, risk managed, no noise.</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -172,7 +247,7 @@ const text = `
 $ I’m Kian.
 
 I build stuff, trade stuff,
-break stuff then fix it.</>
+break stuff then fix it.
 
 If you need someone who actually ships,
 yeah, you’re home.
@@ -180,25 +255,21 @@ yeah, you’re home.
 $ Web3 builder by obsession.
 Marketing and Sales grad by paper.
 Vibe coder by nature.
-
-I edit videos, make content,
-and trade markets in between builds.
 `;
 
 let i = 0;
-const speed = 30;
 const terminal = document.getElementById("terminal");
 
 function type() {
   if (i < text.length) {
     terminal.textContent += text.charAt(i);
     i++;
-    setTimeout(type, speed);
+    setTimeout(type, 28);
   }
 }
 type();
 
-/* snow effect */
+/* snow */
 const canvas = document.getElementById("snow");
 const ctx = canvas.getContext("2d");
 let w, h;
@@ -208,15 +279,15 @@ function resize() {
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
 }
-window.addEventListener("resize", resize);
 resize();
+window.addEventListener("resize", resize);
 
 for (let i = 0; i < 120; i++) {
   particles.push({
     x: Math.random() * w,
     y: Math.random() * h,
     r: Math.random() * 1.5 + 0.5,
-    d: Math.random() * 0.5 + 0.2
+    d: Math.random() * 0.6 + 0.3
   });
 }
 
@@ -224,24 +295,17 @@ function draw() {
   ctx.clearRect(0,0,w,h);
   ctx.fillStyle = "rgba(0,255,156,0.6)";
   ctx.beginPath();
-  for (let p of particles) {
+  particles.forEach(p => {
     ctx.moveTo(p.x, p.y);
     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-  }
-  ctx.fill();
-  update();
-}
-
-function update() {
-  for (let p of particles) {
     p.y += p.d;
     if (p.y > h) {
       p.y = 0;
       p.x = Math.random() * w;
     }
-  }
+  });
+  ctx.fill();
 }
-
 setInterval(draw, 33);
 </script>
 
