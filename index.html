@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Kian</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kian --init</title>
 
 <style>
 * {
@@ -14,118 +14,165 @@
 }
 
 body {
+  height: 100vh;
   background: black;
-  color: #00ff9c;
   overflow: hidden;
+  color: #00ff9c;
 }
 
-/* flowing background */
-.bg {
+/* animated grid background */
+body::before {
+  content: "";
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(0,255,156,0.08), transparent 40%),
-    radial-gradient(circle at 80% 60%, rgba(0,160,255,0.06), transparent 45%);
-  animation: float 14s infinite alternate ease-in-out;
+    linear-gradient(rgba(0,255,156,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,156,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: moveGrid 30s linear infinite;
   z-index: -2;
 }
 
-@keyframes float {
-  from { transform: scale(1) translateY(0); }
-  to { transform: scale(1.08) translateY(-30px); }
+@keyframes moveGrid {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 400px 400px, 400px 400px; }
 }
 
-/* snow */
+/* snow particles */
 canvas {
   position: fixed;
   inset: 0;
   z-index: -1;
 }
 
-/* terminal box */
-.container {
-  padding: 40px;
-  max-width: 900px;
+/* center content */
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+/* title */
+h1 {
+  font-size: 42px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  opacity: 0.7;
+  margin-bottom: 30px;
+}
+
+/* terminal */
 .terminal-box {
-  border: 1px solid #00ff9c;
-  padding: 24px;
-  background: rgba(0,0,0,0.6);
-  min-height: 360px;
-  line-height: 1.6;
+  width: 820px;
+  min-height: 420px;
+  background: rgba(0,0,0,0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(0,255,156,0.35);
+  box-shadow: 0 0 40px rgba(0,255,156,0.2);
+  transition: 0.35s ease;
+}
+
+.terminal-box:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 0 80px rgba(0,255,156,0.45);
+}
+
+/* header */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0,255,156,0.2);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.header span {
+  margin-left: 10px;
+  opacity: 0.7;
+}
+
+/* content */
+.content {
+  padding: 26px;
+  line-height: 1.7;
+  font-size: 16px;
 }
 
 .cursor {
-  display: inline-block;
-  width: 10px;
-  background: #00ff9c;
   animation: blink 1s infinite;
-  margin-left: 4px;
 }
 
 @keyframes blink {
   50% { opacity: 0; }
 }
 
-/* contact */
-.links {
-  margin-top: 30px;
+/* socials */
+.socials {
+  margin-top: 18px;
   display: flex;
-  gap: 30px;
+  gap: 24px;
 }
 
-.link-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #00bfff;
+.socials a {
+  color: #00ff9c;
   text-decoration: none;
   font-size: 16px;
+  opacity: 0.8;
+  transition: 0.25s;
 }
 
-.link-item img {
-  width: 20px;
-  height: 20px;
-}
-
-.link-item:hover {
-  color: #00ff9c;
+.socials a:hover {
+  opacity: 1;
+  text-shadow: 0 0 12px #00ff9c;
 }
 </style>
 </head>
 
 <body>
-<div class="bg"></div>
+
 <canvas id="snow"></canvas>
 
-<div class="container">
+<div class="wrapper">
+  <h1>./kian --init</h1>
+  <div class="subtitle">Builder. Trader. Ships things.</div>
+
   <div class="terminal-box">
-    <span id="terminal"></span><span class="cursor"></span>
+    <div class="header">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+      <span>~/about.sh</span>
+    </div>
+    <div class="content">
+      <span id="terminal"></span><span class="cursor">█</span>
+    </div>
   </div>
 
-  <div class="links">
-    <a class="link-item" href="https://t.me/order_denied" target="_blank">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/telegram.svg">
-      Telegram
-    </a>
-
-    <a class="link-item" href="https://x.com/rakel8990" target="_blank">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg">
-      X
-    </a>
+  <div class="socials">
+    <a href="https://t.me/order_denied" target="_blank">Telegram</a>
+    <a href="https://x.com/rakel8990" target="_blank">X</a>
   </div>
 </div>
 
 <script>
-/* typing effect */
 const text = `
-./kian --init
-> Builder. Trader. Ships things.
-
 $ I’m Kian.
 
-I build stuff, trade stuff, break stuff then fix it.
+I build stuff, trade stuff,
+break stuff then fix it.</>
 
 If you need someone who actually ships,
 yeah, you’re home.
@@ -139,12 +186,12 @@ and trade markets in between builds.
 `;
 
 let i = 0;
-const speed = 32;
+const speed = 30;
 const terminal = document.getElementById("terminal");
 
 function type() {
   if (i < text.length) {
-    terminal.innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+    terminal.textContent += text.charAt(i);
     i++;
     setTimeout(type, speed);
   }
@@ -155,7 +202,7 @@ type();
 const canvas = document.getElementById("snow");
 const ctx = canvas.getContext("2d");
 let w, h;
-let flakes = [];
+let particles = [];
 
 function resize() {
   w = canvas.width = window.innerWidth;
@@ -164,36 +211,39 @@ function resize() {
 window.addEventListener("resize", resize);
 resize();
 
-for (let i = 0; i < 80; i++) {
-  flakes.push({
+for (let i = 0; i < 120; i++) {
+  particles.push({
     x: Math.random() * w,
     y: Math.random() * h,
-    r: Math.random() * 2 + 1,
-    d: Math.random() + 1
+    r: Math.random() * 1.5 + 0.5,
+    d: Math.random() * 0.5 + 0.2
   });
 }
 
-function snow() {
-  ctx.clearRect(0, 0, w, h);
-  ctx.fillStyle = "rgba(255,255,255,0.6)";
+function draw() {
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle = "rgba(0,255,156,0.6)";
   ctx.beginPath();
-  flakes.forEach(f => {
-    ctx.moveTo(f.x, f.y);
-    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-  });
+  for (let p of particles) {
+    ctx.moveTo(p.x, p.y);
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+  }
   ctx.fill();
-
-  flakes.forEach(f => {
-    f.y += f.d;
-    if (f.y > h) {
-      f.y = -5;
-      f.x = Math.random() * w;
-    }
-  });
-
-  requestAnimationFrame(snow);
+  update();
 }
-snow();
+
+function update() {
+  for (let p of particles) {
+    p.y += p.d;
+    if (p.y > h) {
+      p.y = 0;
+      p.x = Math.random() * w;
+    }
+  }
+}
+
+setInterval(draw, 33);
 </script>
+
 </body>
 </html>
