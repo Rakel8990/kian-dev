@@ -6,7 +6,6 @@
 <title>kian --init</title>
 
 <style>
-/* GLOBAL RESET */
 * {
   margin: 0;
   padding: 0;
@@ -82,7 +81,6 @@ h1 {
   border: 1px solid rgba(0,255,156,0.4);
   box-shadow: 0 0 50px rgba(0,255,156,0.35);
   animation: float 6s ease-in-out infinite;
-  transition: 0.35s ease;
   display: flex;
   flex-direction: column;
 }
@@ -148,9 +146,8 @@ h1 {
 }
 
 .skills-track {
-  display: inline-flex; /* important for scrollWidth calculation */
-  gap: 16px;
-  flex-wrap: nowrap;
+  display: flex;
+  gap: 18px;
   position: relative;
   left: 0;
 }
@@ -286,8 +283,8 @@ const cursor = terminal.querySelector(".cursor");
 
 (function type(){
   if(i < formatted.length){
-    cursor.insertAdjacentText('beforebegin', formatted.charAt(i++)); // insert char before cursor
-    setTimeout(type, 60); // slower typing speed
+    cursor.insertAdjacentText('beforebegin', formatted.charAt(i++));
+    setTimeout(type, 60);
   }
 })();
 
@@ -313,28 +310,21 @@ setInterval(()=>{
   ctx.fill();
 },33);
 
-/* SKILLS PING-PONG SLIDER */
+/* SKILLS SLIDER LEFT CONTINUOUS */
 const track = document.querySelector('.skills-track');
-let direction = -0.5; // negative = left, positive = right
 let pos = 0;
-
-function slideSkills() {
-  const containerWidth = track.parentElement.offsetWidth;
-  const trackWidth = track.scrollWidth;
-
-  if(trackWidth > containerWidth){
-    pos += direction;
-
-    if(pos <= containerWidth - trackWidth) direction = 0.5; // reverse right
-    if(pos >= 0) direction = -0.5; // reverse left
-
-    track.style.transform = `translateX(${pos}px)`;
+function moveSkills(){
+  const firstCard = track.children[0];
+  const cardWidth = firstCard.offsetWidth + 18; // card + gap
+  pos -= 0.5; // speed
+  if(Math.abs(pos) >= cardWidth){
+    track.appendChild(firstCard); // move first to end
+    pos += cardWidth; // reset position
   }
-
-  requestAnimationFrame(slideSkills);
+  track.style.transform = `translateX(${pos}px)`;
+  requestAnimationFrame(moveSkills);
 }
-
-slideSkills();
+moveSkills();
 </script>
 
 </body>
