@@ -288,12 +288,12 @@ footer {
 <script>
 /* TERMINAL TYPING EFFECT */
 const text = `
-$ I’m Kian.
-I build stuff, trade stuff, break stuff then fix it.
-If you need someone who actually ships, yeah, you’re home.
-$ Web3 builder by obsession.
-Marketing and Sales grad by paper.
-Vibe coder by nature.
+$ I’m Kian. I build stuff, trade stuff, break stuff (then fix it).
+If you need someone who actually ships => yeah, you’re home.
+
+$ Web3 builder. Marketing & Sales grad by paper,
+vibe coder by nature.
+I edit videos, make content, and trade markets in between.
 `;
 
 const formatted = text.replace(/\.\s*/g, ".\n");
@@ -303,7 +303,7 @@ const terminal = document.getElementById("terminal");
 (function type(){
   if(i < formatted.length){
     terminal.textContent += formatted.charAt(i++);
-    setTimeout(type, 26);
+    setTimeout(type, 50);
   }
 })();
 
