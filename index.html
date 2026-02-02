@@ -147,18 +147,24 @@ h1 {
   overflow: hidden;
 }
 
-.skills-track {
-  display: flex;
-  gap: 16px;
-  width: max-content;
-  animation: slide 35s linear infinite;
-  flex-wrap: wrap;
-  justify-content: center;
+const track = document.querySelector('.skills-track');
+let direction = -1; // -1 = left, 1 = right
+let pos = 0;
+
+function slideSkills() {
+  const trackWidth = track.scrollWidth;
+  const containerWidth = track.parentElement.offsetWidth;
+
+  pos += direction; // change speed here, smaller = slower
+  if(pos <= -(trackWidth - containerWidth)) direction = 1; // reached left end -> go right
+  if(pos >= 0) direction = -1; // reached right end -> go left
+
+  track.style.transform = `translateX(${pos}px)`;
+  requestAnimationFrame(slideSkills);
 }
 
-@keyframes slide {
-  to { transform: translateX(-50%); }
-}
+slideSkills();
+
 
 .skill-card {
   min-width: 180px;
