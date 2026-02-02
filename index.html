@@ -122,17 +122,16 @@ h1 {
   font-size: 15px;
   line-height: 1.7;
   white-space: pre-line;
-
   display: flex;
   flex-direction: column;
-  justify-content: center; /* vertical center */
-  align-items: center;     /* horizontal center */
+  justify-content: center;
+  align-items: center;
   min-height: 180px;
   text-align: center;
 }
 
 .cursor {
-  display: inline; /* inline so it stays right after the text */
+  display: inline;
   animation: blink 1s infinite;
 }
 
@@ -145,26 +144,17 @@ h1 {
   margin-top: 50px;
   width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
-const track = document.querySelector('.skills-track');
-let direction = -1; // -1 = left, 1 = right
-let pos = 0;
-
-function slideSkills() {
-  const trackWidth = track.scrollWidth;
-  const containerWidth = track.parentElement.offsetWidth;
-
-  pos += direction; // change speed here, smaller = slower
-  if(pos <= -(trackWidth - containerWidth)) direction = 1; // reached left end -> go right
-  if(pos >= 0) direction = -1; // reached right end -> go left
-
-  track.style.transform = `translateX(${pos}px)`;
-  requestAnimationFrame(slideSkills);
+.skills-track {
+  display: flex;
+  gap: 16px;
+  flex-wrap: nowrap;
+  position: relative;
+  left: 0; /* controlled by JS */
+  transition: transform 0.05s linear;
 }
-
-slideSkills();
-
 
 .skill-card {
   min-width: 180px;
@@ -259,8 +249,7 @@ footer {
       <div class="skill-card"><div class="skill-title">$ Web3 Builder</div><div class="skill-desc">Builds & ships onchain.</div></div>
       <div class="skill-card"><div class="skill-title">$ Vibe Coder</div><div class="skill-desc">Learns by building.</div></div>
       <div class="skill-card"><div class="skill-title">$ Trader</div><div class="skill-desc">Trades for self only.</div></div>
-
-     
+    </div>
   </div>
 
   <!-- CONTACT ICONS -->
@@ -300,7 +289,7 @@ const cursor = terminal.querySelector(".cursor");
 (function type(){
   if(i < formatted.length){
     cursor.insertAdjacentText('beforebegin', formatted.charAt(i++)); // insert char before cursor
-    setTimeout(type, 78); // slower typing speed
+    setTimeout(type, 60); // slower typing speed
   }
 })();
 
@@ -325,6 +314,26 @@ setInterval(()=>{
   });
   ctx.fill();
 },33);
+
+/* SKILLS PING-PONG SLIDER */
+const track = document.querySelector('.skills-track');
+let direction = -0.5; // negative = left, positive = right
+let pos = 0;
+
+function slideSkills() {
+  const trackWidth = track.scrollWidth;
+  const containerWidth = track.parentElement.offsetWidth;
+
+  pos += direction;
+
+  if(pos <= -(trackWidth - containerWidth)) direction = 0.5; // reverse right
+  if(pos >= 0) direction = -0.5; // reverse left
+
+  track.style.transform = `translateX(${pos}px)`;
+  requestAnimationFrame(slideSkills);
+}
+
+slideSkills();
 </script>
 
 </body>
