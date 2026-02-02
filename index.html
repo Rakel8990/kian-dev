@@ -1,6 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kian</title>
+
+<style>
+* { box-sizing: border-box; font-family: monospace; }
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #0a0f1f, #05070d 70%);
+  color: #e5e7eb;
+  overflow: hidden;
+}
+
+/* SNOW */
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* LAYOUT */
+.wrapper {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+}
+
+/* MAIN BOX */
+.main-box {
+  width: 520px;
+  max-width: 90%;
+  padding: 22px;
+  background: rgba(10,15,30,.65);
+  border: 1px solid rgba(59,130,246,.35);
+  border-radius: 14px;
+  box-shadow: 0 0 40px rgba(59,130,246,.25);
+  animation: float 6s ease-in-out infinite;
+  backdrop-filter: blur(8px);
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* TERMINAL */
+#typing {
+  white-space: pre-line;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* CONTACTS */
+.contact {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.contact span {
+  opacity: .7;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+.contact a {
+  color: #3b82f6;
+  transition: transform .2s, filter .2s;
+}
+
+.contact a:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 10px #3b82f6);
+}
+
+/* SKILLS SLIDER */
+.skills {
+  position: absolute;
+  bottom: 120px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  gap: 18px;
+  animation: slide 35s linear infinite;
+}
+
+@keyframes slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.skill {
+  min-width: 230px;
+  padding: 16px;
+  background: rgba(10,15,30,.7);
+  border: 1px solid rgba(59,130,246,.3);
+  border-radius: 12px;
+  transition: transform .3s, box-shadow .3s;
+}
+
+.skill:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(59,130,246,.8);
+}
+
+.skill h4 { margin: 0 0 6px; color: #3b82f6; }
+.skill p { margin: 0; font-size: 13px; opacity: .7; }
+
+/* FOOTER */
+footer {
+  position: absolute;
+  bottom: 20px;
+  font-size: 12px;
+  opacity: .5;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="snow"></canvas>
+
+<div class="wrapper">
+
+  <div class="main-box">
+    <div id="typing"></div>
+  </div>
+
+  <div class="contact">
+    <span>DM ME</span>
+    <a href="https://x.com/rakel8990" target="_blank">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2H21.552L14.32 10.26L22.88 22H16.172L10.996 15.14L4.94 22H1.63L9.32 13.2L1.12 2H8L12.676 8.32L18.244 2Z"/>
+      </svg>
+    </a>
+    <a href="https://t.me/order_denied" target="_blank">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M9.04 15.57L8.68 19.1C9.17 19.1 9.38 18.89 9.64 18.64L11.52 16.84L15.4 19.7C16.1 20.09 16.6 19.89 16.78 19.05L19.98 4.86C20.2 3.82 19.6 3.35 18.94 3.6L2.38 10.03C1.34 10.45 1.36 11.03 2.19 11.28L6.42 12.6L16.25 6.42C16.7 6.14 17.1 6.29 16.77 6.58L9.04 15.57Z"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="skills">
+    <div class="track">
+      <div class="skill"><h4>Web3 Builder</h4><p>Ships real things</p></div>
+      <div class="skill"><h4>Marketing Graduate</h4><p>By paper</p></div>
+      <div class="skill"><h4>Video Editor</h4><p>Shorts & edits</p></div>
+      <div class="skill"><h4>Content Creator</h4><p>Threads & vids</p></div>
+      <div class="skill"><h4>Vibe Coder</h4><p>Fast experiments</p></div>
+      <div class="skill"><h4>Trader</h4><p>Personal capital</p></div>
+
+      <!-- duplicate for loop -->
+      <div class="skill"><h4>Web3 Builder</h4><p>Ships real things</p></div>
+      <div class="skill"><h4>Marketing Graduate</h4><p>By paper</p></div>
+      <div class="skill"><h4>Video Editor</h4><p>Shorts & edits</p></div>
+      <div class="skill"><h4>Content Creator</h4><p>Threads & vids</p></div>
+      <div class="skill"><h4>Vibe Coder</h4><p>Fast experiments</p></div>
+      <div class="skill"><h4>Trader</h4><p>Personal capital</p></div>
+    </div>
+  </div>
+
+  <footer>© 2026 Kian</footer>
+</div>
+
+<script>
+const text = `./kian --init
+> Builder. Trader. Ships things.
+
+$ I’m Kian.
+
+I build stuff.
+I trade stuff.
+I break stuff.
+Then I fix it.
+
+If you need someone who actually ships,
+yeah, you’re home.
+
+$ Web3 builder by obsession.
+Marketing and Sales grad by paper.
+Vibe coder by nature.
+
+I edit videos.
+Make content.
+Trade markets in between builds.
+`;
+
+let i = 0;
+const el = document.getElementById("typing");
+(function type(){
+  if (i < text.length) {
+    el.textContent += text[i++];
+    setTimeout(type, 18);
+  }
+})();
+</script>
+
+<script>
+const canvas = document.getElementById("snow");
+const ctx = canvas.getContext("2d");
+let w, h, flakes = [];
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.onresize = resize;
+resize();
+
+for (let i=0;i<120;i++) flakes.push({
+  x: Math.random()*w,
+  y: Math.random()*h,
+  r: Math.random()*1.5,
+  s: Math.random()*1.2+0.2
+});
+
+(function snow(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle = "rgba(255,255,255,.6)";
+  flakes.forEach(f=>{
+    f.y += f.s;
+    if (f.y > h) f.y = -5;
+    ctx.beginPath();
+    ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
+    ctx.fill();
+  });
+  requestAnimationFrame(snow);
+})();
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Kian</title>
