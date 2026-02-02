@@ -2,109 +2,86 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Kian</title>
 
 <style>
-:root {
-  --bg: #0b0f1a;
-  --card: #111827;
-  --border: #1f2937;
-  --text: #e5e7eb;
-  --muted: #9ca3af;
-  --glow: #2563eb;
-}
-
-* {
-  box-sizing: border-box;
-  font-family: monospace;
-}
+* { box-sizing: border-box; font-family: monospace; }
 
 body {
   margin: 0;
-  background: url("bg.jpg") center/cover no-repeat fixed, var(--bg);
-  color: var(--text);
+  background: #0a0a0a;
+  color: #eaeaea;
   overflow-x: hidden;
 }
 
-/* Snow */
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}
-
-/* Main container */
-.wrapper {
-  position: relative;
-  z-index: 2;
+/* layout */
+.page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 80px;
+  padding-top: 70px;
 }
 
-/* Main box */
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 26px;
-  width: 90%;
-  max-width: 620px;
-  box-shadow: 0 0 40px rgba(37,99,235,0.25);
+/* main content box */
+.main-box {
+  width: 520px;
+  max-width: 90%;
+  padding: 22px;
+  border: 1px solid #222;
+  border-radius: 14px;
+  background: #0f0f0f;
+  box-shadow: 0 0 25px rgba(0,0,0,.6);
   animation: float 6s ease-in-out infinite;
 }
 
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
 }
 
-/* Terminal text */
-.terminal {
+/* terminal text */
+#typing {
   white-space: pre-line;
   line-height: 1.6;
-  font-size: 15px;
+  font-size: 14px;
 }
 
-/* Contact */
+/* contact area (OUTSIDE box) */
 .contact {
+  margin-top: 18px;
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-top: 18px;
 }
 
-.dm-label {
+.contact span {
+  opacity: .7;
   font-size: 13px;
-  opacity: 0.7;
-  letter-spacing: 1px;
 }
 
 .contact a {
-  color: white;
+  color: #eaeaea;
   transition: transform .2s, filter .2s;
 }
 
 .contact a:hover {
   transform: scale(1.15);
-  filter: drop-shadow(0 0 6px var(--glow));
+  filter: drop-shadow(0 0 6px #3b82f6);
 }
 
-/* Skills slider */
-.skills-wrap {
-  margin-top: 70px;
+/* skills slider */
+.skills {
+  margin-top: 60px;
   width: 100%;
   overflow: hidden;
 }
 
-.skills-track {
+.track {
   display: flex;
-  gap: 20px;
-  animation: slide 35s linear infinite;
+  gap: 18px;
+  animation: slide 30s linear infinite;
 }
 
 @keyframes slide {
@@ -113,80 +90,73 @@ canvas {
 }
 
 .skill {
-  min-width: 240px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 18px;
-  border-radius: 14px;
-  transition: box-shadow .3s, transform .3s;
+  min-width: 230px;
+  padding: 16px;
+  border: 1px solid #222;
+  border-radius: 12px;
+  background: #0f0f0f;
+  transition: transform .3s, box-shadow .3s;
 }
 
 .skill:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 25px rgba(37,99,235,0.7);
+  box-shadow: 0 0 28px rgba(59,130,246,.7);
 }
 
-.skill h4 {
-  margin: 0 0 6px;
-}
+.skill h4 { margin: 0 0 6px; }
+.skill p { margin: 0; opacity: .7; font-size: 13px; }
 
-.skill p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-/* Footer */
+/* footer */
 footer {
-  margin: 50px 0 20px;
+  margin: 40px 0 20px;
   font-size: 12px;
-  opacity: 0.6;
+  opacity: .5;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="snow"></canvas>
+<div class="page">
 
-<div class="wrapper">
-
-  <div class="card">
-    <div id="typing" class="terminal"></div>
-
-    <div class="contact">
-      <span class="dm-label">DM ME</span>
-
-      <a href="https://x.com/rakel8990" target="_blank" aria-label="X">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.244 2H21.552L14.32 10.26L22.88 22H16.172L10.996 15.14L4.94 22H1.63L9.32 13.2L1.12 2H8L12.676 8.32L18.244 2Z"/>
-        </svg>
-      </a>
-
-      <a href="https://t.me/order_denied" target="_blank" aria-label="Telegram">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M9.04 15.57L8.68 19.1C9.17 19.1 9.38 18.89 9.64 18.64L11.52 16.84L15.4 19.7C16.1 20.09 16.6 19.89 16.78 19.05L19.98 4.86C20.2 3.82 19.6 3.35 18.94 3.6L2.38 10.03C1.34 10.45 1.36 11.03 2.19 11.28L6.42 12.6L16.25 6.42C16.7 6.14 17.1 6.29 16.77 6.58L9.04 15.57Z"/>
-        </svg>
-      </a>
-    </div>
+  <!-- MAIN BOX -->
+  <div class="main-box">
+    <div id="typing"></div>
   </div>
 
-  <div class="skills-wrap">
-    <div class="skills-track">
-      <!-- duplicated for infinite loop -->
-      <div class="skill"><h4>Web3 Builder</h4><p>Shipping onchain products</p></div>
-      <div class="skill"><h4>Marketing Grad</h4><p>By paper, not vibes</p></div>
-      <div class="skill"><h4>Video Editor</h4><p>Shorts, edits, cuts</p></div>
-      <div class="skill"><h4>Content Creator</h4><p>Threads, videos, ideas</p></div>
-      <div class="skill"><h4>Vibe Coder</h4><p>Build fast, refine later</p></div>
+  <!-- CONTACT -->
+  <div class="contact">
+    <span>DM ME</span>
+
+    <a href="https://x.com/rakel8990" target="_blank">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2H21.552L14.32 10.26L22.88 22H16.172L10.996 15.14L4.94 22H1.63L9.32 13.2L1.12 2H8L12.676 8.32L18.244 2Z"/>
+      </svg>
+    </a>
+
+    <a href="https://t.me/order_denied" target="_blank">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M9.04 15.57L8.68 19.1C9.17 19.1 9.38 18.89 9.64 18.64L11.52 16.84L15.4 19.7C16.1 20.09 16.6 19.89 16.78 19.05L19.98 4.86C20.2 3.82 19.6 3.35 18.94 3.6L2.38 10.03C1.34 10.45 1.36 11.03 2.19 11.28L6.42 12.6L16.25 6.42C16.7 6.14 17.1 6.29 16.77 6.58L9.04 15.57Z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="skills">
+    <div class="track">
+      <div class="skill"><h4>Web3 Builder</h4><p>Shipping real products</p></div>
+      <div class="skill"><h4>Marketing Graduate</h4><p>Degree, not vibes</p></div>
+      <div class="skill"><h4>Video Editor</h4><p>Shorts & edits</p></div>
+      <div class="skill"><h4>Content Creator</h4><p>Threads & videos</p></div>
+      <div class="skill"><h4>Vibe Coder</h4><p>Fast & experimental</p></div>
       <div class="skill"><h4>Trader</h4><p>Personal capital only</p></div>
 
-      <!-- repeat -->
-      <div class="skill"><h4>Web3 Builder</h4><p>Shipping onchain products</p></div>
-      <div class="skill"><h4>Marketing Grad</h4><p>By paper, not vibes</p></div>
-      <div class="skill"><h4>Video Editor</h4><p>Shorts, edits, cuts</p></div>
-      <div class="skill"><h4>Content Creator</h4><p>Threads, videos, ideas</p></div>
-      <div class="skill"><h4>Vibe Coder</h4><p>Build fast, refine later</p></div>
+      <!-- duplicate for loop -->
+      <div class="skill"><h4>Web3 Builder</h4><p>Shipping real products</p></div>
+      <div class="skill"><h4>Marketing Graduate</h4><p>Degree, not vibes</p></div>
+      <div class="skill"><h4>Video Editor</h4><p>Shorts & edits</p></div>
+      <div class="skill"><h4>Content Creator</h4><p>Threads & videos</p></div>
+      <div class="skill"><h4>Vibe Coder</h4><p>Fast & experimental</p></div>
       <div class="skill"><h4>Trader</h4><p>Personal capital only</p></div>
     </div>
   </div>
@@ -195,9 +165,7 @@ footer {
 </div>
 
 <script>
-/* Typing */
-const text = `
-./kian --init
+const text = `./kian --init
 > Builder. Trader. Ships things.
 
 $ I’m Kian.
@@ -211,7 +179,7 @@ If you need someone who actually ships,
 yeah, you’re home.
 
 $ Web3 builder by obsession.
-Marketing & Sales grad by paper.
+Marketing and Sales grad by paper.
 Vibe coder by nature.
 
 I edit videos.
@@ -220,51 +188,14 @@ Trade markets in between builds.
 `;
 
 let i = 0;
-const speed = 20;
-const target = document.getElementById("typing");
+const el = document.getElementById("typing");
 
-function type() {
+(function type(){
   if (i < text.length) {
-    target.textContent += text.charAt(i);
-    i++;
-    setTimeout(type, speed);
+    el.textContent += text.charAt(i++);
+    setTimeout(type, 18);
   }
-}
-type();
-
-/* Snow */
-const canvas = document.getElementById("snow");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let flakes = Array.from({length: 80}, () => ({
-  x: Math.random() * canvas.width,
-  y: Math.random() * canvas.height,
-  r: Math.random() * 3 + 1,
-  d: Math.random() + 1
-}));
-
-function snow() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle = "rgba(255,255,255,0.8)";
-  ctx.beginPath();
-  flakes.forEach(f => {
-    ctx.moveTo(f.x,f.y);
-    ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
-  });
-  ctx.fill();
-
-  flakes.forEach(f => {
-    f.y += f.d;
-    if (f.y > canvas.height) {
-      f.y = 0;
-      f.x = Math.random() * canvas.width;
-    }
-  });
-  requestAnimationFrame(snow);
-}
-snow();
+})();
 </script>
 
 </body>
