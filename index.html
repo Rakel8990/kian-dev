@@ -175,6 +175,9 @@ h1 {
   transition: 0.25s;
   text-decoration: none;
 }
+.contact a:hover {
+  transform: scale(1.15);
+}
 
 .contact a:hover {
   opacity: 1;
@@ -231,9 +234,19 @@ footer {
 
   <!-- CONTACT ICONS -->
   <div class="contact">
-    <a href="https://x.com/rakel8990" target="_blank">𝕏</a>
-    <a href="https://t.me/order_denied" target="_blank">✈</a>
-  </div>
+  <a href="https://x.com/rakel8990" target="_blank" aria-label="X">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18.244 2H21.552L14.32 10.26L22.88 22H16.172L10.996 15.14L4.94 22H1.63L9.32 13.2L1.12 2H8L12.676 8.32L18.244 2Z"/>
+    </svg>
+  </a>
+
+  <a href="https://t.me/order_denied" target="_blank" aria-label="Telegram">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M9.04 15.57L8.68 19.1C9.17 19.1 9.38 18.89 9.64 18.64L11.52 16.84L15.4 19.7C16.1 20.09 16.6 19.89 16.78 19.05L19.98 4.86C20.2 3.82 19.6 3.35 18.94 3.6L2.38 10.03C1.34 10.45 1.36 11.03 2.19 11.28L6.42 12.6L16.25 6.42C16.7 6.14 17.1 6.29 16.77 6.58L9.04 15.57Z"/>
+    </svg>
+  </a>
+</div>
+
 
   <footer>© 2026 Kian</footer>
 </div>
