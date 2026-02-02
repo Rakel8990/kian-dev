@@ -148,11 +148,11 @@ h1 {
 }
 
 .skills-track {
-  display: flex;
+  display: inline-flex; /* important for scrollWidth calculation */
   gap: 16px;
   flex-wrap: nowrap;
   position: relative;
-  left: 0; /* controlled by JS */
+  left: 0;
 }
 
 .skill-card {
@@ -233,7 +233,6 @@ footer {
       <span>~/about.sh</span>
     </div>
 
-    <!-- TERMINAL WITH FIXED CURSOR -->
     <div class="content">
       <span id="terminal"><span class="cursor">█</span></span>
     </div>
@@ -314,19 +313,19 @@ setInterval(()=>{
   ctx.fill();
 },33);
 
-/* SKILLS PING-PONG SLIDER FIXED */
+/* SKILLS PING-PONG SLIDER */
 const track = document.querySelector('.skills-track');
-let direction = -0.5; // speed & direction
+let direction = -0.5; // negative = left, positive = right
 let pos = 0;
 
 function slideSkills() {
-  const trackWidth = track.scrollWidth;
   const containerWidth = track.parentElement.offsetWidth;
+  const trackWidth = track.scrollWidth;
 
   if(trackWidth > containerWidth){
     pos += direction;
 
-    if(pos <= -(trackWidth - containerWidth)) direction = 0.5; // reverse right
+    if(pos <= containerWidth - trackWidth) direction = 0.5; // reverse right
     if(pos >= 0) direction = -0.5; // reverse left
 
     track.style.transform = `translateX(${pos}px)`;
