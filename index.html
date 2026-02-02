@@ -14,11 +14,11 @@
 }
 
 body {
-  height: 100vh;
-  background: black;
-  overflow: hidden;
-  color: #00ff9c;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
+
 
 /* GRID BACKGROUND */
 body::before {
@@ -101,6 +101,12 @@ h1 {
 .header span {
   margin-left: 10px;
   opacity: 0.7;
+}
+.dm-label {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-right: 10px;
+  letter-spacing: 1px;
 }
 
 /* CONTENT */
@@ -234,6 +240,8 @@ footer {
 
   <!-- CONTACT ICONS -->
   <div class="contact">
+    <span class="dm-label">DM ME</span>
+
   <a href="https://x.com/rakel8990" target="_blank" aria-label="X">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
       <path d="M18.244 2H21.552L14.32 10.26L22.88 22H16.172L10.996 15.14L4.94 22H1.63L9.32 13.2L1.12 2H8L12.676 8.32L18.244 2Z"/>
