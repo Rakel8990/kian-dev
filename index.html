@@ -153,7 +153,6 @@ h1 {
   flex-wrap: nowrap;
   position: relative;
   left: 0; /* controlled by JS */
-  transition: transform 0.05s linear;
 }
 
 .skill-card {
@@ -315,21 +314,24 @@ setInterval(()=>{
   ctx.fill();
 },33);
 
-/* SKILLS PING-PONG SLIDER */
+/* SKILLS PING-PONG SLIDER FIXED */
 const track = document.querySelector('.skills-track');
-let direction = -0.5; // negative = left, positive = right
+let direction = -0.5; // speed & direction
 let pos = 0;
 
 function slideSkills() {
   const trackWidth = track.scrollWidth;
   const containerWidth = track.parentElement.offsetWidth;
 
-  pos += direction;
+  if(trackWidth > containerWidth){
+    pos += direction;
 
-  if(pos <= -(trackWidth - containerWidth)) direction = 0.5; // reverse right
-  if(pos >= 0) direction = -0.5; // reverse left
+    if(pos <= -(trackWidth - containerWidth)) direction = 0.5; // reverse right
+    if(pos >= 0) direction = -0.5; // reverse left
 
-  track.style.transform = `translateX(${pos}px)`;
+    track.style.transform = `translateX(${pos}px)`;
+  }
+
   requestAnimationFrame(slideSkills);
 }
 
