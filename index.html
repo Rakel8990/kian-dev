@@ -17,10 +17,10 @@
 body {
   height: 100vh;
   background: black;
-  overflow-x: hidden; /* prevent horizontal scroll on mobile */
+  overflow-x: hidden;
   color: #00ff9c;
 }
-  
+
 footer {
   position: sticky;
   bottom: 12px;
@@ -63,7 +63,7 @@ canvas {
 
 /* TITLE */
 h1 {
-  font-size: clamp(24px, 5vw, 40px); /* responsive font size */
+  font-size: clamp(24px, 5vw, 40px);
   margin-bottom: 4px;
 }
 
@@ -75,15 +75,14 @@ h1 {
 
 /* TERMINAL BOX */
 .terminal-box {
-  width: 90%;             /* responsive width */
-  max-width: 680px;       /* max width for PC */
+  width: 90%;
+  max-width: 680px;
   background: rgba(0,0,0,0.75);
   border-radius: 12px;
   border: 1px solid rgba(0,255,156,0.4);
   box-shadow: 0 0 50px rgba(0,255,156,0.35);
   animation: float 6s ease-in-out infinite;
   transition: 0.35s ease;
-
   display: flex;
   flex-direction: column;
 }
@@ -124,15 +123,16 @@ h1 {
   line-height: 1.7;
   white-space: pre-line;
 
-  display: flex;            /* make flex container */
-  flex-direction: column;   /* stack text vertically */
-  justify-content: center;  /* vertical center */
-  align-items: center;      /* horizontal center */
-  min-height: 180px;        /* adjust height for vertical centering */
-  text-align: center;       /* center text lines */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+  min-height: 180px;
+  text-align: center;
 }
 
 .cursor {
+  display: inline; /* inline so it stays right after the text */
   animation: blink 1s infinite;
 }
 
@@ -152,7 +152,7 @@ h1 {
   gap: 16px;
   width: max-content;
   animation: slide 35s linear infinite;
-  flex-wrap: wrap; /* wrap on small screens */
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -175,15 +175,8 @@ h1 {
   box-shadow: 0 0 45px rgba(0,255,156,0.9);
 }
 
-.skill-title {
-  font-size: 14px;
-  margin-bottom: 6px;
-}
-
-.skill-desc {
-  font-size: 12px;
-  opacity: 0.75;
-}
+.skill-title { font-size: 14px; margin-bottom: 6px; }
+.skill-desc { font-size: 12px; opacity: 0.75; }
 
 /* CONTACT ICONS */
 .contact {
@@ -215,7 +208,7 @@ footer {
   text-align: center;
 }
 
-/* MEDIA QUERIES FOR SMALL SCREENS */
+/* MEDIA QUERIES */
 @media screen and (max-width: 480px) {
   .terminal-box { padding: 16px; }
   .skills-section { margin-top: 30px; }
@@ -245,12 +238,13 @@ footer {
       <span>~/about.sh</span>
     </div>
 
-   <div class="content">
-  <span id="terminal"><span class="cursor">█</span></span>
-</div>
+    <!-- TERMINAL WITH FIXED CURSOR -->
+    <div class="content">
+      <span id="terminal"><span class="cursor">█</span></span>
+    </div>
+  </div>
 
-
-  <!-- SLIDING SKILLS -->
+  <!-- SKILLS SLIDER -->
   <div class="skills-section">
     <div class="skills-track">
       <div class="skill-card"><div class="skill-title">$ Marketing Graduate</div><div class="skill-desc">Understands funnels & persuasion.</div></div>
@@ -268,19 +262,19 @@ footer {
   </div>
 
   <!-- CONTACT ICONS -->
- <div class="contact">
-  <a href="https://x.com/rakel8990" target="_blank" aria-label="X">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.244 2H21.552L14.32 10.26L22.88 22H16.172L10.996 15.14L4.94 22H1.63L9.32 13.2L1.12 2H8L12.676 8.32L18.244 2Z"/>
-    </svg>
-  </a>
+  <div class="contact">
+    <a href="https://x.com/rakel8990" target="_blank" aria-label="X">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2H21.552L14.32 10.26L22.88 22H16.172L10.996 15.14L4.94 22H1.63L9.32 13.2L1.12 2H8L12.676 8.32L18.244 2Z"/>
+      </svg>
+    </a>
 
-  <a href="https://t.me/order_denied" target="_blank" aria-label="Telegram">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M9.04 15.57L8.68 19.1C9.17 19.1 9.38 18.89 9.64 18.64L11.52 16.84L15.4 19.7C16.1 20.09 16.6 19.89 16.78 19.05L19.98 4.86C20.2 3.82 19.6 3.35 18.94 3.6L2.38 10.03C1.34 10.45 1.36 11.03 2.19 11.28L6.42 12.6L16.25 6.42C16.7 6.14 17.1 6.29 16.77 6.58L9.04 15.57Z"/>
-    </svg>
-  </a>
-</div>
+    <a href="https://t.me/order_denied" target="_blank" aria-label="Telegram">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M9.04 15.57L8.68 19.1C9.17 19.1 9.38 18.89 9.64 18.64L11.52 16.84L15.4 19.7C16.1 20.09 16.6 19.89 16.78 19.05L19.98 4.86C20.2 3.82 19.6 3.35 18.94 3.6L2.38 10.03C1.34 10.45 1.36 11.03 2.19 11.28L6.42 12.6L16.25 6.42C16.7 6.14 17.1 6.29 16.77 6.58L9.04 15.57Z"/>
+      </svg>
+    </a>
+  </div>
 
   <footer>© 2026 Kian</footer>
 </div>
@@ -288,22 +282,23 @@ footer {
 <script>
 /* TERMINAL TYPING EFFECT */
 const text = `
-$ I’m Kian. I build stuff, trade stuff, break stuff (then fix it).
-If you need someone who actually ships => yeah, you’re home.
-
-$ Web3 builder. Marketing & Sales grad by paper,
-vibe coder by nature.
-I edit videos, make content, and trade markets in between.
+$ I’m Kian.
+I build stuff, trade stuff, break stuff then fix it.
+If you need someone who actually ships, yeah, you’re home.
+$ Web3 builder by obsession.
+Marketing and Sales grad by paper.
+Vibe coder by nature.
 `;
 
 const formatted = text.replace(/\.\s*/g, ".\n");
 let i = 0;
 const terminal = document.getElementById("terminal");
+const cursor = terminal.querySelector(".cursor");
 
 (function type(){
   if(i < formatted.length){
-    terminal.textContent += formatted.charAt(i++);
-    setTimeout(type, 50);
+    cursor.insertAdjacentText('beforebegin', formatted.charAt(i++)); // insert char before cursor
+    setTimeout(type, 60); // slower typing speed
   }
 })();
 
